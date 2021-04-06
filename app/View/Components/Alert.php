@@ -12,7 +12,7 @@ class Alert extends Component
      *
      * @return void
      */
-    public function __construct($color= null)
+    public function __construct($color= 'blue')
     {
         $this->color = $color;
     }
@@ -25,5 +25,11 @@ class Alert extends Component
     public function render()
     {
         return view('components.alert');
+    }
+    public function prueba()
+    {
+        if ($this->color == 'red') {
+            return "Este es una alerta de peligro";
+        }
     }
 }
