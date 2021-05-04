@@ -11,17 +11,28 @@
     <div class="card">
         <div class="card-body">
             {!! Form::open(['route' => 'admin.posts.store', 'autocomplete' => 'off']) !!}
+
+                {!! Form::hidden('user_id', auth()->user()->id) !!}
                 <div class="form-group">
                     {!! Form::label('name', 'Nombre') !!}
                     {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre del Post']) !!}
+                    @error('name')
+                        <small class="text-danger">{{$message}}</small>
+                    @enderror
                 </div>
                 <div class="form-group">
                     {!! Form::label('slug', 'Slug') !!}
                     {!! Form::text('slug', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el slug del Post', 'readonly']) !!}
+                    @error('slug')
+                        <small class="text-danger">{{$message}}</small>
+                    @enderror
                 </div>
                 <div class="form-group">
                     {!! Form::label('category_id', 'Categoria') !!}
                     {!! Form::select('category_id', $categories, null, ['class' => 'form-control']) !!}
+                    @error('category_id')
+                        <small class="text-danger">{{$message}}</small>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <p class="font-weight-bold">
@@ -33,6 +44,11 @@
                             {{$tag->name}}
                         </label>
                     @endforeach
+                    
+                    @error('tags')
+                    <br>
+                    <small class="text-danger">{{$message}}</small>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <p class="font-weight-bold">Estado</p>
@@ -45,16 +61,31 @@
                             {!! Form::radio('status', 2) !!}
                             Publicado
                         </label>
-                    
+                        
+                        @error('status')
+                        <br>
+                        <small class="text-danger">{{$message}}</small>
+                        @enderror
                 </div>
                 <div class="form-group">
                     {!! Form::label('stract', 'Extracto') !!}
                     {!! Form::textarea('stract', null, ['class' => 'form-control']) !!}
+                    
+                    @error('stract')
+                    <br>
+                    <small class="text-danger">{{$message}}</small>
+                    @enderror
                 </div>
                 <div class="form-group">
                     {!! Form::label('body', 'Cuerpo del Blog') !!}
                     {!! Form::textarea('body', null, ['class' => 'form-control']) !!}
+                    
+                    @error('body')
+                    <br>
+                    <small class="text-danger">{{$message}}</small>
+                    @enderror
                 </div>
+                {!! Form::submit('Crear Post', ['class' => 'btn btn-primary btn-sm']) !!}
             {!! Form::close() !!}
         </div>
     </div>
