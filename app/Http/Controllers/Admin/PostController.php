@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PostRequest;
+use App\Http\Requests\StorePostRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Tag;
-
 use Illuminate\Support\Facades\Storage;
 
 
@@ -41,7 +40,9 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $request){
+    public function store(StorePostRequest $request)
+    {
+           
        $post = Post::create($request->all());
         if ($request->file('file')) {
             $url= Storage::put('posts', $request->file('file'));
@@ -49,7 +50,9 @@ class PostController extends Controller
                 'url'=> $url
                 ]);
         }
+
        if($request->tags){
+       
            $post->tags()->attach($request->tags);
        }
        return redirect()->route('admin.posts.edit', $post);
@@ -72,11 +75,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(PostRequest $request, Post $post)
+    public function edit(Post $post)
     {
-        $categories = Category::pluck('name', 'id');
-        $tags = Tag::all();
-        return view('admin.posts.edit', compact('post', 'categories', 'tags') );
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -86,25 +87,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostRequest $request, Post $post)
+    public function update(Request $request, Post $post)
     {
-        //$post->update($request->all());
-       /*  if($request->file('file')){
-            $url = Storage::put('posts', $request->file('file'));
-            
-            if ($post->image) {
-                Storage::delete($post->image->url);
-                $post->image->update([
-                    'url' => $url
-                ]);
-            }else{
-                $post->image->create([
-                    'url' => $url
-                ]);
-            }
-        } */
-
-        //return redirect()->route('admin.posts.edit', $post)->with('info', 'El post se actualizo con exito');
+        //
     }
 
     /**
