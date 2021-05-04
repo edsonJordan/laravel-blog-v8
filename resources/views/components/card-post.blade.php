@@ -1,13 +1,20 @@
 @props(['post'])
 <article class="mb-8 bg-white shadow-lg rounded-lg overflow-hidden" >
+    @if ($post->image)
     <img class="w-full h-72 object-cover object-center" src="http://127.0.0.1:8000/storage/{{$post->image->url}}" alt="">
+    @else   
+    <img class="w-full h-72 object-cover object-center" src="https://cdn.pixabay.com/photo/2020/05/05/12/12/coffee-5132832_960_720.jpg" alt="">
+    @endif
+                        
     <div class="px-6 py-4">
         <h1>
             <a href="{{route('posts.show', $post)}}" class="font-bold text-xl mb-2">
                 {{$post->name}}
             </a>
             <div class="text-gray-700 text-base">
-                {{$post->stract}}
+                {{-- {{$post->stract}} --}}
+                {{-- imprimir como html --}}
+                {!! $post->stract !!}
             </div>
         </h1>
     </div>
