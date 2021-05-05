@@ -55,11 +55,11 @@
 <div class="row">
     <div class="col mb-3">
         <div class="image-wrapper">
-            @if ($post->image)
+            @isset ($post->image)
                 <img id="picture" src="http://127.0.0.1:8000/storage/{{$post->image->url }}" alt="">
             @else
             <img id="picture" src="https://cdn.pixabay.com/photo/2020/05/05/12/12/coffee-5132832_960_720.jpg" alt="">
-            @endif
+            @endisset
             
         </div>
     </div>
