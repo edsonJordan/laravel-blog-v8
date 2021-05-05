@@ -12,7 +12,7 @@
         <div class="card-body">
             {!! Form::open(['route' => 'admin.posts.store', 'autocomplete' => 'off', 'files' => true]) !!}
 
-                {!! Form::hidden('user_id', auth()->user()->id) !!}
+                {{-- {!! Form::hidden('user_id', auth()->user()->id) !!} --}}
                 @include('admin.posts.partials.form')
                 {!! Form::submit('Crear Post', ['class' => 'btn btn-primary btn-sm']) !!}
             {!! Form::close() !!}
