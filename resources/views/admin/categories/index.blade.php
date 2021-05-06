@@ -3,6 +3,10 @@
 @section('title', 'Sunqupacha')
 
 @section('content_header')
+    @can('admin.categories.create')
+    <a href="{{route('admin.categories.create')}}" class="btn btn-success btn-sm float-right">Agregar categoria</a>
+    @endcan
+    
     <h1>Lista de categorias</h1>
 @stop
 
@@ -16,9 +20,7 @@
             </div>
         @endif
     <div class="card">
-        <div class="card-header">
-            <a href="{{route('admin.categories.create')}}" class="btn btn-success btn-sm">Agregar categoria</a>
-        </div>
+      
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
@@ -33,8 +35,16 @@
                         <tr>
                             <td>{{$category->id}}</td>
                             <td>{{$category->name}}</td>
-                            <td width="10px"><a class="btn btn-primary btn-sm" href="{{route('admin.categories.edit', $category)}}">Editar</a></td>
+                           
                             <td width="10px">
+                                @can('admin.categories.edit')
+                                <a class="btn btn-primary btn-sm" href="{{route('admin.categories.edit', $category)}}">Editar</a>
+                                @endcan
+                            </td>
+                           
+                           
+                            <td width="10px">
+                                @can('admin.categories.destroy')
                                 <form action="{{route('admin.categories.destroy', $category)}}" method="POST">
                                     @csrf
                                     @method('delete')
@@ -42,7 +52,10 @@
                                         Eliminar
                                     </button>
                                 </form>
-                            </td>
+                                @endcan
+                            </td>   
+                         
+                            
                         </tr>
                     @endforeach
                 </tbody>

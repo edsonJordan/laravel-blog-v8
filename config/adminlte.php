@@ -240,6 +240,7 @@ return [
             'icon'        => 'fas fa-tachometer-alt',
             'label'       => 4,
             'label_color' => 'success',
+            'can'       => 'admin.home',
         ],
         [
             'text'        => 'Usuarios',
@@ -247,30 +248,34 @@ return [
             'icon'        => 'fas fa-users fa-fw',
             'label'       => 4,
             'label_color' => 'success',
+            'can'       => 'admin.users.index',
         ],
-        ['header' => 'ADMINISTRADOR'],
         [
             'text' => 'Categorías',
             'route'  => 'admin.categories.index',
             'icon' => 'fas fa-fw fa-user',
             'active' => ['admin/categories*'],
+            'can'       => 'admin.categories.index',
         ],
         [
             'text' => 'Etiquetas',
             'route'  => 'admin.tags.index',
             'icon' => 'fas fa-fw fa-bookmark',
             'active' => ['admin/tags*'],
+            'can'       => 'admin.tags.index',
         ],
         ['header' => 'Opciones de blog'],
         [
             'text'       => 'Lista de Post',
             'route'        => 'admin.posts.index',
             'icon'      => 'fas fa-fw fa-clipboard',
+            'can'       => 'admin.posts.index',
         ],
         [
             'text'       => 'Crear Nuevo Post',
             'route'        => 'admin.posts.create',
             'icon'      => 'fas fa-fw fa-clipboard',
+            'can'       => 'admin.posts.create',
         ],
     ],
 
