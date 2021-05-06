@@ -238,7 +238,7 @@ return [
             'text'        => 'Dashboard',
             'route'         => 'admin.home',
             'icon'        => 'fas fa-tachometer-alt',
-            'label'       => 4,
+            /* 'label'       => 4, */
             'label_color' => 'success',
             'can'       => 'admin.home',
         ],
@@ -246,9 +246,15 @@ return [
             'text'        => 'Usuarios',
             'route'         => 'admin.users.index',
             'icon'        => 'fas fa-users fa-fw',
-            'label'       => 4,
             'label_color' => 'success',
             'can'       => 'admin.users.index',
+        ],
+        [
+            'text'        => 'Lista de roles',
+            'route'         => 'admin.roles.index',
+            'icon'        => 'fas fa-users-cog fa-fw',
+            'label_color' => 'success',
+            /* 'can'       => 'admin.roles.index', */
         ],
         [
             'text' => 'Categorías',
